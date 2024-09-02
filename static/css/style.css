@@ -8,16 +8,12 @@ img {
   width: 80px; }
 
 .navbar {
+  color: #fff;
   opacity: 0.9;
   text-transform: uppercase; }
 
 .social a {
   margin-right: 0.4rem; }
-
-ul{
-  list-style-type: none;
-  list-style-position: inside;
-}
 
 #showcase {
   background: url(../img/showcase.jpg) no-repeat top center fixed/cover;

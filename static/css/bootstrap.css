@@ -18,7 +18,8 @@
   --white: #fff;
   --gray: #6c757d;
   --gray-dark: #343a40;
-  --primary: #158646!important;
+  /* --primary: #158646!important; */
+  --primary: #24693A!important;
   --secondary: #76E443;
   --success: #20c997;
   --info: #17a2b8;
@@ -4284,7 +4285,7 @@ button.close {
 a.bg-primary:hover, a.bg-primary:focus,
 button.bg-primary:hover,
 button.bg-primary:focus {
-  background-color: #071224 !important; }
+  background-color: #36A403 !important; }
 
 .bg-secondary {
   background-color: #30caa0 !important; }
@@ -5024,6 +5025,10 @@ button.bg-dark:focus {
 
 .position-relative {
   position: relative !important; }
+
+.position-center{
+  position: center;
+}
 
 .position-absolute {
   position: absolute !important; }
@@ -6407,6 +6412,8 @@ a.text-dark:hover, a.text-dark:focus {
 /*--------------------------------------------------------------
 # Desktop Navigation
 --------------------------------------------------------------*/
+
+/* 
 @media (min-width: 1280px) {
   .navbar {
     padding: 0;
@@ -6513,7 +6520,7 @@ a.text-dark:hover, a.text-dark:focus {
   .navbar .dropdown ul a:hover,
   .navbar .dropdown ul .active:hover,
   .navbar .dropdown ul li:hover>a {
-    color: var(--color-secondary);
+    color: var(--color-primary);
   }
 
   .navbar .dropdown:hover>ul {
@@ -6544,19 +6551,24 @@ a.text-dark:hover, a.text-dark:focus {
   .navbar .dropdown .dropdown:hover>ul {
     left: -100%;
   }
-}
+} */
 
+
+
+/* 
 @media (min-width: 1280px) {
 
   .mobile-nav-show,
   .mobile-nav-hide {
-    display: none;
+    display: block;
   }
-}
+} */
 
 /*--------------------------------------------------------------
 # Mobile Navigation
 --------------------------------------------------------------*/
+
+/* 
 @media (max-width: 1279px) {
   .navbar {
     position: fixed;
@@ -6574,7 +6586,7 @@ a.text-dark:hover, a.text-dark:focus {
     inset: 0;
     padding: 50px 0 10px 0;
     margin: 0;
-    background: rgba(0, 131, 116, 0.9);
+    background: #ec0016;
     overflow-y: auto;
     transition: 0.3s;
     z-index: 9998;
@@ -6630,8 +6642,8 @@ a.text-dark:hover, a.text-dark:focus {
     padding: 10px 0;
     margin: 10px 20px;
     transition: all 0.5s ease-in-out;
-    background-color: #007466;
-    border: 1px solid #006459;
+    background-color: var(--color-primary);
+    border: 1px solid #ea5549;
   }
 
   .navbar .dropdown>.dropdown-active,
@@ -6673,7 +6685,15 @@ a.text-dark:hover, a.text-dark:focus {
     content: "";
     position: fixed;
     inset: 0;
-    background: rgba(0, 106, 93, 0.8);
+    background: #ea5549;
     z-index: 9996;
   }
+  .mobile-nav-toggle {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
+ */
