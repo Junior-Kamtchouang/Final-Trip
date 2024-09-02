@@ -20,7 +20,7 @@
 /* Colors */
 :root {
   --color-default: #222222;
-  --color-primary: #24693A;
+  --color-primary: #24693A!important;
   --color-secondary: #f85a40;
 }
 
