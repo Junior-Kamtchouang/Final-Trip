@@ -331,7 +331,7 @@ section {
 /*--------------------------------------------------------------
 # Desktop Navigation
 --------------------------------------------------------------*/
-@media (min-width: 1280px) {
+@media (min-width: 300px) {
   .navbar {
     padding: 0;
   }
@@ -485,7 +485,7 @@ section {
   .navbar {
     position: fixed;
     top: 0;
-    right:  -100%;
+
     width: 100%;
     max-width: 400px;
     bottom: 0;

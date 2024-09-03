@@ -2796,9 +2796,9 @@ input[type="button"].btn-block {
 
 .tab-content > .active {
   display: block; }
-
+/* 
 .navbar {
-  position: relative;
+  position: fixed;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -3055,7 +3055,7 @@ input[type="button"].btn-block {
   .navbar-dark .navbar-text a {
     color: #fff; }
     .navbar-dark .navbar-text a:hover, .navbar-dark .navbar-text a:focus {
-      color: #fff; }
+      color: #fff; } */
 
 .card {
   position: relative;

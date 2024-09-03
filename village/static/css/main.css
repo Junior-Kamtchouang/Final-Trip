@@ -331,7 +331,7 @@ section {
 /*--------------------------------------------------------------
 # Desktop Navigation
 --------------------------------------------------------------*/
-@media (min-width: 1280px) {
+@media (min-width: 120px) {
   .navbar {
     padding: 0;
   }
@@ -491,16 +491,18 @@ section {
     bottom: 0;
     transition: 0.3s;
     z-index: 9997;
+    height: 100%;
   }
 
   .navbar ul {
     position: absolute;
     display: flex;
+    height: 100%;
     flex-direction: column;
     inset: 0;
     padding: 50px 0 10px 0;
     margin: 0;
-    background: rgba(0, 131, 116, 0.9);
+    background: var(--color-primary);
     overflow-y: auto;
     transition: 0.3s;
     z-index: 9998;
@@ -546,7 +548,7 @@ section {
   .navbar .getstarted:hover,
   .navbar .getstarted:focus:hover {
     color: #fff;
-    background: rgba(0, 131, 116, 0.8);
+    background: var(--color-primary);
   }
 
   .navbar .dropdown ul,
