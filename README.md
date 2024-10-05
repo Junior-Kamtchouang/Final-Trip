@@ -9,4 +9,4 @@ Diese Website präsentiert die **Final Trip**-Initiative, die afrikanischen, ins
 
 Die Website zielt darauf ab, Transparenz zu schaffen und die Community über den Zweck und die Vorteile der Initiative zu informieren.
 
-![alt text]()
+![alt text](https://github.com/Junior-Kamtchouang/Final-Trip/blob/9ce35a9a08b446f4383e6e3649dca6393905be86/final-trip-presentation-image.png)
