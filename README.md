@@ -1,6 +1,7 @@
 # Final Trip / Dernier voyage Website
 
 Website: https://final-trip.org
+
 Diese Website präsentiert die **Final Trip**-Initiative, die afrikanischen, insbesondere kamerunischen, Diaspora-Mitgliedern in Deutschland hilft, wenn ein geliebter Mensch im Ausland stirbt. Ziel ist es, öffentliche Spendenaktionen zur Rückführung von Verstorbenen zu vermeiden und eine würdevolle und organisierte Rückführung zu gewährleisten.
 
 ## Features der Website:
