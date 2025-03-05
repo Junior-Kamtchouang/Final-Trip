@@ -29,6 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'the-final-trip.onrender.com',
     'localhost',
+    'www.the-final-trip.onrender.com',
 ]
 
 
