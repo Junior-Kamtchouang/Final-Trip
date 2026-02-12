@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/association.css' %}">
+{% endblock %}
+
+{% block body_class %}page-association page-association-list{% endblock %}
+
+{% block content %}
+
+<section class="ft-section">
+
+  <div class="ft-wrap">
+      <header class="assoc-head assoc-head--center">
+      <span class="assoc-kicker">Partner</span>
+      <h1 class="assoc-title">Partner Associations</h1>
+      <p class="assoc-subtitle">Übersicht aller registrierten Vereine und Partner.</p>
+
+      <div class="assoc-head__meta">
+        <span class="assoc-pill">{{ associations_count }} Gesamt</span>
+        <span class="assoc-pill">Gesamtmitglieder: {{ total_members }}</span>
+        <span class="assoc-pill">Monatliches Volumen: {{ total_monthly_volume|floatformat:0 }} €</span>
+      </div>
+    </header>
+    <!-- DESKTOP/TABLET TABLE -->
+    <div class="assoc-card assoc-only-desktop">
+      <div class="assoc-table-wrap">
+        <table class="assoc-table">
+          <thead>
+            <tr>
+              <th class="is-left">Name</th>
+              <th>Leiter/in</th>
+              <th class="is-center">Status</th>
+              <th class="is-center">Mitglieder</th>
+              <th class="is-right">Beitrag</th>
+              <th class="is-center">Aktion</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for assoc in associations %}
+            <tr>
+              <td class="is-left">
+                <div class="assoc-name">{{ assoc.name }}</div>
+                <div class="assoc-meta">ID: #{{ assoc.pk }} • Seit {{ assoc.entry_date|date:"Y"|default:"-" }}</div>
+              </td>
+
+              <td>
+                <div class="assoc-person">
+                  <i class="fas fa-user-circle"></i>
+                  <span>{{ assoc.head_of_association|default:"-" }}</span>
+                </div>
+              </td>
+
+              <td class="is-center">
+                <span class="assoc-badge
+                  {% if assoc.status == 'active' %}assoc-badge--active
+                  {% elif assoc.status == 'suspended' %}assoc-badge--warn
+                  {% else %}assoc-badge--inactive{% endif %}">
+                  {{ assoc.get_status_display }}
+                </span>
+              </td>
+
+              <td class="is-center assoc-strong">{{ assoc.member_count }}</td>
+
+              <td class="is-right">
+                <div class="assoc-fee">{{ assoc.fee_amount|floatformat:2 }} €</div>
+                <div class="assoc-meta">{{ assoc.get_fee_type_display }}</div>
+              </td>
+
+              <td class="is-center">
+                <a class="assoc-btn assoc-btn--primary" href="{% url 'association_detail' assoc.pk %}">
+                  <i class="fas fa-eye"></i><span>Details</span>
+                </a>
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="6" class="assoc-empty">
+                <i class="fas fa-info-circle"></i><span>Keine Associations gefunden.</span>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+<!-- MOBILE CARDS -->
+    <div class="assoc-only-mobile assoc-mobile-list">
+      {% for assoc in associations %}
+      <article class="assoc-mobile-card">
+        <div class="assoc-mobile-top">
+          <div>
+            <div class="assoc-name">{{ assoc.name }}</div>
+            <div class="assoc-meta">ID: #{{ assoc.pk }} • Seit {{ assoc.entry_date|date:"Y"|default:"-" }}</div>
+          </div>
+
+          <span class="assoc-badge
+            {% if assoc.status == 'active' %}assoc-badge--active
+            {% elif assoc.status == 'suspended' %}assoc-badge--warn
+            {% else %}assoc-badge--inactive{% endif %}">
+            {{ assoc.get_status_display }}
+          </span>
+        </div>
+
+        <div class="assoc-mobile-grid">
+          <div class="assoc-mini-kv">
+            <div class="assoc-mini-kv__k">Leiter/in</div>
+            <div class="assoc-mini-kv__v">{{ assoc.head_of_association|default:"-" }}</div>
+          </div>
+
+          <div class="assoc-mini-kv">
+            <div class="assoc-mini-kv__k">Mitglieder</div>
+            <div class="assoc-mini-kv__v assoc-strong">{{ assoc.member_count }}</div>
+          </div>
+
+          <div class="assoc-mini-kv">
+            <div class="assoc-mini-kv__k">Beitrag</div>
+            <div class="assoc-mini-kv__v">
+              <span class="assoc-fee">{{ assoc.fee_amount|floatformat:2 }} €</span>
+              <span class="assoc-meta">{{ assoc.get_fee_type_display }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="assoc-mobile-actions">
+          <a class="assoc-btn assoc-btn--primary assoc-btn--wide" href="{% url 'association_detail' assoc.pk %}">
+            <i class="fas fa-eye"></i><span>Details</span>
+          </a>
+        </div>
+      </article>
+      {% empty %}
+      <div class="assoc-empty-card">
+        <i class="fas fa-info-circle"></i><span>Keine Associations gefunden.</span>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endblock %}

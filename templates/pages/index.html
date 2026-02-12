@@ -1,231 +1,413 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
+{% load static %}
 
-{%load static%}
-{%block title%} | Welcome {%endblock%}
+{% block title %}| Welcome{% endblock %}
 
-{%block content%}
-<link rel="stylesheet" href="{% static 'css/main.css' %}">
-<!-- ======= Hero Section ======= -->
+{% block content %}
+
+<!-- =========================
+     HERO (Text left, Image right offset)
+     ========================= -->
 <section id="hero" class="hero">
-    <div class="container position-relative">
-      <div class="row gy-5" data-aos="fade-in">
-        <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
-          <h2>Welcome to <span>Final Trip / Dernier voyage</span></h2>
-          
+  <div class="container">
+      <!-- Copy -->
+      <div class="col-lg-6">
+        <div class="fade-in-up">
+          <span class="section-subtitle">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="6" cy="6" r="6" fill="currentColor"></circle>
+            </svg>
+            Dernier Voyage
+          </span>
+
+          <h1 class="hero-title">
+           Welcome to <span class="hero-accent">The Final Trip</span>, built by community.
+          </h1>
+
+          <p class="hero-description">
+            We ensure the repatriation of our loved ones with respect, clarity, and compassion — and help families navigate the process with reliable support.
+          </p>
+
+          <div class="hero-actions d-flex flex-wrap justify-content-start gap-3">
+            <a href="/about" class="btn-finaltrip">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              About Us
+            </a>
+
+            <a href="mailto:contact@finaltrip.org" class="btn-hero-outline">
+              Contact
+            </a>
+          </div>
+
+          <p class="text-muted mt-4" style="max-width: 56ch;">
+            Questions or partnership requests: <a href="mailto:contact@finaltrip.org"><strong>contact@finaltrip.org</strong></a>
+          </p>
         </div>
-        <div class="col-lg-6 order-1 order-lg-2">
-          <!-- <img src="{%static 'img/.jpg'%}" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="100"> -->
+
+      <!-- Media -->
+      <div>
+        <div class="ft-hero-media">
+          <img
+            src="{% static 'img/about.jpg' %}"
+            class="hero-image"
+            alt="The Final Trip"
+            loading="eager"
+            decoding="async"
+          />
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="icon-boxes position-relative">
-      <div class="container position-relative">
-        <div class="row gy-4 mt-5">
-
-          <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon-box">
-              <div class="icon"><i class="fas fa-users"></i></div>
-              <h4 class="title">
-                <a href="" class="stretched-link">ACTIVE MEMBERS</a>
-                <hr>
-                <P><strong>200</strong> </P></h4>
+  <!-- Floating Stats (Forest Glass Cards) -->
+  <div class="icon-boxes">
+    <div class="container">
+      <div class="row g-4 g-lg-5 align-items-stretch ft-hero-grid">
+        <div class="col-lg-3 col-md-6">
+          <div class="icon-box">
+            <div class="icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
             </div>
-          </div><!--End Icon Box -->
+            <div class="stat-number">{{ stats.manual_member_count }}</div>
+            <h4 class="title">Active Members</h4>
+            <p class="stat-label">Registered members</p>
+          </div>
+        </div>
 
-          <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon-box">
-              <div class="icon"><i class="fas fa-money-bill-alt"></i></div>
-              <h4 class="title"><a href="" class="stretched-link">PARTICIPATION BY MEMBER</a>
-                <hr>
-              <p><strong>€ not available now</strong></p>
-              </h4>
-              
+        <div class="col-lg-3 col-md-6">
+          <div class="icon-box">
+            <div class="icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
             </div>
-          </div><!--End Icon Box -->
+            <div class="stat-number">€{{ stats.manual_participation_fee }}</div>
+            <h4 class="title">Participation</h4>
+            <p class="stat-label">Per member contribution</p>
+          </div>
+        </div>
 
-          <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="icon-box">
-              <div class="icon"><i class="fas fa-handshake"></i></div>
-              <h4 class="title">
-                <a href="" class="stretched-link">PARTNERS</a>
-                <hr>
-                <p> <strong>18</strong></p>
-                <p><strong>Associations</strong></p>
-              </h4>
-              
+        <div class="col-lg-3 col-md-6">
+          <div class="icon-box">
+            <div class="icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
             </div>
-          </div><!--End Icon Box -->
+            <div class="stat-number">{{ stats.association_count }}</div>
+            <h4 class="title">Partners</h4>
+            <p class="stat-label">Partner associations</p>
+          </div>
+        </div>
 
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- =========================
+     ABOUT (Equal-height split)
+     ========================= -->
+<section id="about" class="about">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-subtitle">Who We Are</span>
+      <h2>The Final Trip Network</h2>
+      <p class="section-description">Building a community of support and dignity</p>
+    </div>
+
+    <div class="about-wrapper">
+        <div class="about-image">
+          <img src="{% static 'img/about.jpg' %}" alt="About The Final Trip" loading="lazy" decoding="async">
+        </div>
+      <div class="about-content">
+          <p class="lead-text">
+            Following the disappearance of members of the African community, Cameroonian in particular, it is no longer rare to see public quests organised in order to raise funds to help repatriate the body.
+          </p>
+          <p class="content-text">
+            Faced with this phenomenon, the Final Trip network has taken the initiative by setting up an organisation involving all the Cameroonian groups and associations willing to eradicate the phenomenon of public quests at each death.
+          </p>
+          <p class="content-text">
+            The more the number increases, the lower the individual share so as to facilitate the repatriation of the remains of our loved ones with love, dignity and humanity in accordance with the last wishes of the deceased and/or the bereaved family.
+          </p>
+          <p class="content-text">
+            This is a message to every member of the community; this message concerns us and appeals to everyone because death is something that will knock on our door sooner or later. Think ahead and take the option of being counted among the members of the Final Trip.
+          </p>
+
+          <div class="d-flex flex-wrap gap-3 mt-4">
+            <a href="/about" class="btn-primary-custom">
+              Learn More About Us
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================
+     SERVICES
+     ========================= -->
+<section id="services" class="services sections-bg">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-subtitle">What We Offer</span>
+      <h2>Our Services</h2>
+      <p class="section-description">Comprehensive support for our community in times of need</p>
+    </div>
+
+    <div class="row g-4 align-items-stretch">
+      <!-- 1 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="service-item">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
+              <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
+              <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+          </div>
+          <h3>Ensure Repatriation</h3>
+          <p>Ensure repatriation to homeland or carry out the wishes of the deceased.</p>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="service-item">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path>
+              <path d="M12 18V6"></path>
+            </svg>
+          </div>
+          <h3>Lighten Contributions</h3>
+          <p>The more we are, the less you pay — lightening individual contributions by the weight of numbers.</p>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="service-item">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </div>
+          <h3>Administrative Support</h3>
+          <p>Ensure the bereaved family is entitled to all that is due to them on the administrative side.</p>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="service-item">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <h3>Funeral Planning</h3>
+          <p>Organize and plan the funeral according to the wishes of the deceased or the family.</p>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="service-item">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          </div>
+          <h3>Dignified Return</h3>
+          <p>Ensure a harmonious and dignified return of the remains of loved ones.</p>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="service-item">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <h3>Equal Coverage</h3>
+          <p>Provide the same coverage to all members of your family living with you in Germany.</p>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="service-item">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h3>Funeral Director</h3>
+          <p>Offer the services of a professional funeral director for funeral services.</p>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="service-item">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          </div>
+          <h3>Grieving Support</h3>
+          <p>Provide opportunities to the bereaved family to grieve with community support.</p>
+        </div>
+      </div>
+
+      <!-- 9 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="service-item">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h3>Community Support</h3>
+          <p>Bring together a community around a common cause to humanity.</p>
+        </div>
+      </div>
+
+      <!-- 10 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="service-item">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+              <path d="M2 17l10 5 10-5"></path>
+              <path d="M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <h3>Dignified Treatment</h3>
+          <p>Bring dignity and humanism to treating the remains of our loved ones.</p>
+        </div>
+      </div>
+
+      <!-- 11 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="service-item">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 11a9 9 0 0 1 9 9"></path>
+              <path d="M4 4a16 16 0 0 1 16 16"></path>
+              <circle cx="5" cy="19" r="1"></circle>
+            </svg>
+          </div>
+          <h3>Community Awareness</h3>
+          <p>Broad dissemination so each death becomes a community matter.</p>
         </div>
       </div>
     </div>
+  </div>
+</section>
 
-    </div>
-  </section>
-  <!-- End Hero Section -->
+<!-- =========================
+     MISSION (Equal-height split)
+     ========================= -->
+<section id="call-to-action" class="call-to-action">
+  <div class="container">
+    <div class="ft-split">
+        <div class="ft-split-card ft-glass-card">
+          <span class="section-subtitle">Why It Matters</span>
+          <h2>Our Mission</h2>
 
-  <!-- ======= About Us Section ======= -->
-  <section id="about" class="about">
-    <div class="container" data-aos="fade-up">
+          <p class="content-text">
+            One of Final Trip's objectives is to motivate every member of the community to be part of an association of their choice. We encourage them not to live in isolation but to belong to a group within the community to avoid cases such as have occurred in Germany in the past.
+          </p>
+          <p class="content-text">
+            Most times, people's nationalities are discovered only after their death, and they often do not know or have anyone in the community. It is often very shameful to face this kind of situation, hence the importance of being a member or supporter of an association or group such as the Final Trip.
+          </p>
 
-      <div class="section-header">
-        <h2>Final Trip Network</h2>
-        <p></p>
+          <div class="d-flex flex-wrap gap-3 mt-4">
+            <a href="mailto:contact@finaltrip.org" class="btn-finaltrip">Email Us</a>
+            <a href="/about" class="btn-hero-outline">Learn More</a>
+          </div>
       </div>
-      <div class="row gy-4">
-        <div class="col-lg-6">
-          <h3></h3>
-          <img src="{% static 'img/about.jpg' %}" class="img-fluid rounded-4 mb-4" alt="about us">
-       </div>
-        <div class="col-lg-6">
-          <p>Following the disappearance of members of the African community, Cameroonian in particular, it is no longer rare to see public quests organised in order to raise funds to help repatriate the body. </p>
-          <p>Faced with this phenomenon, the Final trip network has taken the initiative by setting up an organisation involving all the Cameroonian groups and associations willing to eradicate the phenomenon of public quests at each death.</p>
-          <p>The more the number increases, the lower the individual share so as to facilitate the repatriation of the remains of our loved ones with love, dignity and humanity in accordance with the last wishes of the deceased and/or the bereaved family. This is a message to every member of the community; this message concerns us and appeals to everyone because death is something that will knock on our door sooner or later. Think ahead and take the option of being counted among the members of the Final Trip. </p>
+        <div class="ft-split-media">
+          <img src="{% static 'img/callToAction.jpg' %}" alt="Our Mission" loading="lazy" decoding="async">
         </div>
-     
-      </div>
-
     </div>
-  </section><!-- End About Us Section -->
+  </div>
+</section>
 
-  <!-- ======= Our Services Section ======= -->
-  <section id="" class="services ">
-    <div class="container" data-aos="fade-up">
-
-      <div class="section-header">
-        <h2>Our Services</h2>
-      </div>
-
-      <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
-
-    
-        <div class="col-lg-4 col-md-6">
-          <div class="service-item position-relative">
-            <div class="icon">
-              <i class="fas fa-edit"></i>
-            </div>
-            <h3>Ensure Repatriation and Wishes</h3>
-            <p>Ensure repatriation to homeland or carry out the wishes of the deceased.</p>
-          </div>
-        </div><!-- End Service Item -->
-        
-        <div class="col-lg-4 col-md-6">
-          <div class="service-item position-relative">
-            <div class="icon">
-              <i class="fas fa-money-bill-alt"></i>
-            </div>
-            <h3>Lighten Contributions</h3>
-            <p>Lighten individual contributions by the weight of numbers, because the more we are, the less you pay.</p>
-          </div>
-        </div><!-- End Service Item -->
-        
-        <div class="col-lg-4 col-md-6">
-          <div class="service-item position-relative">
-            <div class="icon">
-              <i class="fas fa-edit"></i>
-            </div>
-            <h3>Administrative Support</h3>
-            <p>Ensure that on the administrative side, the bereaved family is entitled to all that is due to them (annuity).</p>
-          </div>
-        </div><!-- End Service Item -->
-        
-        <div class="col-lg-4 col-md-6">
-          <div class="service-item position-relative">
-            <div class="icon">
-              <i class="fas fa-edit"></i>
-            </div>
-            <h3>Funeral Planning</h3>
-            <p>Organize and plan the funeral according to the wishes of the deceased or the family.</p>
-          </div>
-        </div><!-- End Service Item -->
-        
-        <div class="col-lg-4 col-md-6">
-          <div class="service-item position-relative">
-            <div class="icon">
-              <i class="fas fa-edit"></i>
-            </div>
-            <h3>Dignified Return</h3>
-            <p>Ensure a harmonious and dignified return of the remains of loved ones.</p>
-          </div>
-        </div><!-- End Service Item -->
-        
-        <div class="col-lg-4 col-md-6">
-          <div class="service-item position-relative">
-            <div class="icon">
-              <i class="fas fa-edit"></i>
-            </div>
-            <h3>Equal Coverage</h3>
-            <p>Provide the same coverage to all members of your family living with you here in Germany.</p>
-          </div>
-        </div><!-- End Service Item -->
-        
-        <div class="col-lg-4 col-md-6">
-          <div class="service-item position-relative">
-            <div class="icon">
-              <i class="fas fa-tablet"></i>
-            </div>
-            <h3>Funeral Director Services</h3>
-            <p>Offer the services of a funeral director for funeral services.</p>
-          </div>
-        </div><!-- End Service Item -->
-        
-        <div class="col-lg-4 col-md-6">
-          <div class="service-item position-relative">
-            <div class="icon">
-              <i class="fas fa-users"></i>
-            </div>
-            <h3>Grieving Support</h3>
-            <p>Provide opportunities to the bereaved family to grieve.</p>
-          </div>
-        </div><!-- End Service Item -->
-        
-        <div class="col-lg-4 col-md-6">
-          <div class="service-item position-relative">
-            <div class="icon">
-              <i class="fas fa-chart-line"></i>
-            </div>
-            <h3>Community Support</h3>
-            <p>Bring together a community around a common cause to humanity: (death)</p>
-          </div>
-        </div><!-- End Service Item -->
-        
-        <div class="col-lg-4 col-md-6">
-          <div class="service-item position-relative">
-            <div class="icon">
-              <i class="fas fa-chart-line"></i>
-            </div>
-            <h3>Dignified Treatment</h3>
-            <p>Bring some dignity and humanism treating the remains of our loved ones to be repatriated.</p>
-          </div>
-        </div><!-- End Service Item -->
-        
-        <div class="col-lg-4 col-md-6">
-          <div class="service-item position-relative">
-            <div class="icon">
-              <i class="fas fa-users"></i>
-            </div>
-            <h3>Community Awareness</h3>
-            <p>Give broad dissemination to death for each death becomes community.</p>
-          </div>
-        </div><!-- End Service Item -->
-        
-
-      </div>
-
-    </div>
-  </section><!-- End Our Services Section -->
-
-
-      <!-- ======= Call To Action Section ======= -->
-      <section id="call-to-action" class="call-to-action">
-        <div class="container text-center" data-aos="zoom-out">
-          <h3>Our Mission</h3>
-          <img src="{% static 'img/callToAction.jpg' %}" class="img-fluid rounded-4 mb-4" alt="">
-          <p> One of Final trip's objectives is to motivate every member of the community to be part of an association of their choice. We encourage them not to live in isolation but to belong to a group within the community to avoid cases such as have occurred in Germany in the past. Most times, people's nationalities are discovered only after their death, and they often do not know or have anyone in the community. It is often very shameful to face this kind of situation, hence the importance of being a member or supporter of an association or group such as the Final Trip. </p>
-         
+<!-- =========================
+     CONTACT CTA (Polished, simple)
+     ========================= -->
+<section class="ft-contact-cta sections-bg">
+  <div class="container">
+    <div class="ft-glass-card" style="padding: clamp(22px, 3vw, 34px);">
+      <div class="row g-3 align-items-center">
+        <div class="col-lg-8">
+          <span class="section-subtitle">Contact</span>
+          <h3 style="margin: 0 0 8px;">Need help or want to partner with us?</h3>
+          <p class="content-text" style="margin: 0;">
+            Write us at <a href="mailto:contact@finaltrip.org"><strong>contact@finaltrip.org</strong></a>.
+            Your mail app (Outlook, Apple Mail, etc.) will open automatically.
+          </p>
         </div>
-      </section><!-- End Call To Action Section -->
+        <div class="col-lg-4 d-flex justify-content-lg-end">
+          <a class="btn-finaltrip" href="mailto:contact@finaltrip.org">Send Email</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-{%endblock %}
+{% endblock %}

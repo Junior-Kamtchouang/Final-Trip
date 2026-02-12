@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} | {{ association.name }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/association.css' %}">
+{% endblock %}
+
+{% block body_class %}page-association page-association-detail{% endblock %}
+
+{% block content %}
+<section class="ft-section">
+  <div class="ft-wrap">
+
+    <header class="assoc-detail-head">
+      <div>
+        <nav class="assoc-breadcrumb">
+          <a href="{% url 'association_list' %}">Associations</a>
+          <span>/</span>
+          <span class="is-current">{{ association.name|truncatechars:30 }}</span>
+        </nav>
+
+        <h1 class="assoc-title assoc-title--detail">{{ association.name }}</h1>
+        <div class="assoc-meta">ID: #{{ association.pk }}</div>
+      </div>
+
+      <a href="{% url 'association_list' %}" class="assoc-btn assoc-btn--ghost">
+        <i class="fas fa-arrow-left"></i><span>Back to List</span>
+      </a>
+    </header>
+
+    <div class="assoc-alert
+      {% if association.status == 'active' %}assoc-alert--active
+      {% elif association.status == 'suspended' %}assoc-alert--warn
+      {% else %}assoc-alert--inactive{% endif %}">
+      <div class="assoc-alert__icon">
+        <i class="fas
+          {% if association.status == 'active' %}fa-check-circle
+          {% elif association.status == 'suspended' %}fa-exclamation-triangle
+          {% else %}fa-question-circle{% endif %}"></i>
+      </div>
+      <div>
+        <div class="assoc-alert__title">Status: {{ association.get_status_display }}</div>
+        <div class="assoc-meta">
+          {% if association.status == 'active' %}
+            • This association is currently active and in good standing.
+          {% elif association.status == 'suspended' %}
+            • This association has been suspended. Contact management for details.
+          {% else %}
+            • This association is inactive.
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="assoc-detail-grid">
+      <section class="assoc-panel">
+        <header class="assoc-panel__head"><h2><i class="fas fa-user-tie"></i> Leadership</h2></header>
+        <div class="assoc-panel__body">
+          <div class="assoc-kv">
+            <div class="assoc-kv__label">Head of Association</div>
+            <div class="assoc-kv__value">
+              <span class="assoc-avatar"><i class="fas fa-user"></i></span>
+              <strong>{{ association.head_of_association|default:"Not assigned" }}</strong>
+            </div>
+          </div>
+
+          <div class="assoc-kv assoc-kv--row">
+            <div class="assoc-kv__label"><i class="fas fa-phone-alt"></i> Contact Phone</div>
+            <div class="assoc-kv__value">
+              {% if association.head_phone %}
+                <a class="assoc-link" href="tel:{{ association.head_phone }}">{{ association.head_phone }}</a>
+              {% else %}
+                <span class="assoc-meta">Not provided</span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="assoc-panel">
+        <header class="assoc-panel__head"><h2><i class="fas fa-users"></i> Membership</h2></header>
+        <div class="assoc-panel__body">
+          <div class="assoc-mini-grid">
+            <div class="assoc-mini">
+              <div class="assoc-mini__value">{{ association.member_count|default:"0" }}</div>
+              <div class="assoc-meta">Total Members</div>
+            </div>
+            <div class="assoc-mini">
+              <div class="assoc-mini__value">{{ association.entry_date|date:"Y"|default:"-" }}</div>
+              <div class="assoc-meta">Entry Year</div>
+            </div>
+          </div>
+
+          <div class="assoc-kv assoc-kv--row">
+            <div class="assoc-kv__label"><i class="fas fa-calendar-alt"></i> Entry Date</div>
+            <div class="assoc-kv__value"><strong>{{ association.entry_date|date:"d.m.Y"|default:"Not specified" }}</strong></div>
+          </div>
+
+          <div class="assoc-kv assoc-kv--row">
+            <div class="assoc-kv__label"><i class="fas fa-clock"></i> Membership Duration</div>
+            <div class="assoc-kv__value"><strong>{% if association.entry_date %}{{ association.entry_date|timesince }}{% else %}-{% endif %}</strong></div>
+          </div>
+
+          <div class="assoc-kv assoc-kv--row">
+            <div class="assoc-kv__label"><i class="fas fa-info-circle"></i> Status</div>
+            <div class="assoc-kv__value">
+              <span class="assoc-badge
+                {% if association.status == 'active' %}assoc-badge--active
+                {% elif association.status == 'suspended' %}assoc-badge--warn
+                {% else %}assoc-badge--inactive{% endif %}">
+                {{ association.get_status_display }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="assoc-panel">
+        <header class="assoc-panel__head"><h2><i class="fas fa-euro-sign"></i> Financial Overview</h2></header>
+        <div class="assoc-panel__body">
+          <div class="assoc-fin-top">
+            <div>
+              <div class="assoc-meta">Contribution Amount</div>
+              <div class="assoc-fin-amount">{{ association.fee_amount|floatformat:2 }} €</div>
+            </div>
+            <span class="assoc-pill">{{ association.get_fee_type_display }}</span>
+          </div>
+
+          <div class="assoc-kv assoc-kv--row">
+            <div class="assoc-kv__label"><i class="fas fa-calculator"></i> Per Member</div>
+            <div class="assoc-kv__value">
+              <strong>
+                {% if association.member_count > 0 %}
+                  {{ association.fee_per_member|floatformat:2 }} €
+                {% else %}-{% endif %}
+              </strong>
+            </div>
+          </div>
+
+          <div class="assoc-kv assoc-kv--row">
+            <div class="assoc-kv__label"><i class="fas fa-sync-alt"></i> Payment Type</div>
+            <div class="assoc-kv__value"><strong>{{ association.get_fee_type_display }}</strong></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="assoc-actions-card">
+      <h2 class="assoc-actions-title"><i class="fas fa-bolt"></i> Quick Actions</h2>
+      <div class="assoc-actions-grid">
+        <a href="{% url 'association_list' %}" class="assoc-btn assoc-btn--primary assoc-btn--wide">
+          <i class="fas fa-arrow-left"></i><span>Back to List</span>
+        </a>
+        <button class="assoc-btn assoc-btn--ghost assoc-btn--wide" disabled>
+          <i class="fas fa-edit"></i><span>Edit (Coming Soon)</span>
+        </button>
+        <button class="assoc-btn assoc-btn--ghost assoc-btn--wide" disabled>
+          <i class="fas fa-file-invoice"></i><span>Invoices (Coming Soon)</span>
+        </button>
+      </div>
+    </section>
+
+  </div>
+</section>
+{% endblock %}
