@@ -13,14 +13,13 @@
 
   <div class="ft-wrap">
       <header class="assoc-head assoc-head--center">
-      <span class="assoc-kicker">Partner</span>
       <h1 class="assoc-title">Partner Associations</h1>
-      <p class="assoc-subtitle">Übersicht aller registrierten Vereine und Partner.</p>
+      <p class="assoc-subtitle">Overview of all registered partners</p>
 
       <div class="assoc-head__meta">
-        <span class="assoc-pill">{{ associations_count }} Gesamt</span>
-        <span class="assoc-pill">Gesamtmitglieder: {{ total_members }}</span>
-        <span class="assoc-pill">Monatliches Volumen: {{ total_monthly_volume|floatformat:0 }} €</span>
+        <span class="assoc-pill">{{ associations_count }} Partners</span>
+        <span class="assoc-pill">Total members: {{ total_members }}</span>
+
       </div>
     </header>
     <!-- DESKTOP/TABLET TABLE -->
@@ -30,11 +29,10 @@
           <thead>
             <tr>
               <th class="is-left">Name</th>
-              <th>Leiter/in</th>
+              <th>Head of Association</th>
               <th class="is-center">Status</th>
-              <th class="is-center">Mitglieder</th>
-              <th class="is-right">Beitrag</th>
-              <th class="is-center">Aktion</th>
+              <th class="is-center">Members</th>
+              <th class="is-center">Action</th>
             </tr>
           </thead>
 
@@ -49,7 +47,8 @@
               <td>
                 <div class="assoc-person">
                   <i class="fas fa-user-circle"></i>
-                  <span>{{ assoc.head_of_association|default:"-" }}</span>
+{#                  <span>{{ assoc.head_of_association|default:"-" }}</span>#}
+                    <span>This information is coming soon</span>
                 </div>
               </td>
 
@@ -63,11 +62,11 @@
               </td>
 
               <td class="is-center assoc-strong">{{ assoc.member_count }}</td>
-
-              <td class="is-right">
-                <div class="assoc-fee">{{ assoc.fee_amount|floatformat:2 }} €</div>
-                <div class="assoc-meta">{{ assoc.get_fee_type_display }}</div>
-              </td>
+{##}
+{#              <td class="is-right">#}
+{#                <div class="assoc-fee">{{ assoc.fee_amount|floatformat:2 }} €</div>#}
+{#                <div class="assoc-meta">{{ assoc.get_fee_type_display }}</div>#}
+{#              </td>#}
 
               <td class="is-center">
                 <a class="assoc-btn assoc-btn--primary" href="{% url 'association_detail' assoc.pk %}">

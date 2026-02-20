@@ -126,7 +126,6 @@
 <!-- ======= Core Values Section (No Bootstrap) ======= -->
 <section id="core-values" class="ft-section">
   <div class="ft-container">
-
     <div class="ft-core-layout">
       <!-- LEFT -->
       <div class="ft-core-left">
@@ -139,13 +138,13 @@
           <img src="{% static 'img/core_values.jpg' %}" alt="Core Values">
         </div>
 
-        <div class="ft-glass-card ft-core-lead-card">
-          <p class="lead-text">
-            The Final Trip is a non-profit organization whose primary mission is
-            to help the community and eradicate public funding requests after a
-            death occurs.
-          </p>
-        </div>
+{#        <div class="ft-glass-card ft-core-lead-card">#}
+{#          <p class="lead-text" style="justify-content:  center">#}
+{#            The Final Trip is a non-profit organization whose primary mission is#}
+{#            to help the community and eradicate public funding requests after a#}
+{#            death occurs.#}
+{#          </p>#}
+{#        </div>#}
       </div>
 
       <!-- RIGHT -->
@@ -197,6 +196,30 @@
   </div>
 </section>
 <!-- End Core Values -->
+
+<section class="ft-section">
+  <div class="ft-wrap">
+    <header class="ft-section-head ft-core-head">
+      <span class="section-subtitle">Transparency</span>
+      <h2  style="font-size: clamp(26px, 3.2vw, 40px);">Impact Proof</h2>
+      <p class="assoc-subtitle">Short video example of our support.</p>
+    </header>
+
+    <div class="ft-glass-card ft-video-proof">
+      <div style="display:flex; justify-content:center;">
+        <video class="ft-video-vertical" controls preload="metadata" playsinline>
+          <source src="{% static 'video/Final-Trip-Video.mp4' %}" type="video/mp4">
+          Dein Browser unterstützt kein HTML5-Video.
+        </video>
+      </div>
+
+{#      <div class="ft-video-caption">#}
+{#        <strong>Hinweis:</strong> Persönliche Daten wurden ggf. unkenntlich gemacht.#}
+{#        <span class="ft-muted">Aufgenommen am: {{ proof_date|default:"" }}</span>#}
+{#      </div>#}
+    </div>
+  </div>
+</section>
 
 
 <!-- ======= Membership Section (No Bootstrap) ======= -->
