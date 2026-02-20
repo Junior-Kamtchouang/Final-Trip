@@ -84,7 +84,9 @@
 .page-association .assoc-only-mobile{ display:none!important; }
 @media (max-width: 820px){
   .page-association .assoc-only-desktop{ display:none!important; }
-  .page-association .assoc-only-mobile{ display:block!important; }
+  .page-association .assoc-only-mobile{ display:none!important; }
+  .page-association .assoc-mobile-card{display: block;}
+
 }
 
 /* Table */
@@ -194,6 +196,12 @@
   backdrop-filter: blur(18px) saturate(180%);
   box-shadow: 0 18px 40px rgba(27,48,34,0.10);
   padding: 14px;
+  display: none;
+}
+@media (max-width: 820px){
+  .page-association .assoc-mobile-card {
+    display: block;
+  }
 }
 .page-association .assoc-mobile-top{
   display:flex;
