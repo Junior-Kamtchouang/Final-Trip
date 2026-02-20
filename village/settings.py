@@ -21,12 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#*p6&9^qs-@0ab^cz($xxibm(wdpfg=lx779)^3wz9a^0f)ax0'
+SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
+if not SECRET_KEY:
+    raise RuntimeError("DJANGO_SECRET_KEY is not set")
+# SECRET_KEY = 'django-insecure-#*p6&9^qs-@0ab^cz($xxibm(wdpfg=lx779)^3wz9a^0f)ax0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [h.strip() for h in os.getenv("DJANGO_ALLOWED_HOSTS", "").split(",") if h.strip()]
 
 # Application definition
 
@@ -77,7 +80,7 @@ WSGI_APPLICATION = 'village.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.getenv("DJANGO_DB_PATH", str(BASE_DIR / 'db.sqlite3')),
     }
 }
 
