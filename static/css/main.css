@@ -107,9 +107,9 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(2.2rem, 5vw, 3.8rem) !important;
-  font-weight: 800 !important;
-  letter-spacing: -0.04em !important;
+  font-size: clamp(2.2rem, 5vw, 3.8rem) ;
+  font-weight: 800 ;
+  letter-spacing: -0.04em ;
 }
 
 h3 {
